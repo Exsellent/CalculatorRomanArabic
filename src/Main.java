@@ -119,12 +119,21 @@ class Main {
 
     private static String convertNumToRoman(int numArabian) {
         if (numArabian < 1 || numArabian > 10) {
+            // Выбрасываем исключение, если число вне допустимого диапазона
             throw new IllegalArgumentException("Число вне диапазона римских цифр (1-10)");
         }
 
+        // Массив римских цифр
+        String[] romanUnits = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        String[] romanTens = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+
+        // Разбиваем число на десятки и единицы
         int units = numArabian % 10;
         int tens = (numArabian / 10) % 10;
 
-        return "X".repeat(tens) + "I".repeat(units);
+        // Собираем римское число
+        return romanTens[tens] + romanUnits[units];
     }
+
 }
+
